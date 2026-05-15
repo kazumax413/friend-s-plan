@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ペルー旅行 12日間</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff;
+  --bg-soft:#fbfaf7;
+  --text:#1c1c1c;
+  --text-soft:#4a4a4a;
+  --text-mute:#8a8a8a;
+  --line:#e5e2db;
+  --line-soft:#f0ede5;
+  --accent:#9b5a3c;
+  --accent-soft:#c4a78c;
+  --highlight-bg:#f9f5ec;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  font-weight:400;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  font-feature-settings:"palt";
+}
+
+img{display:block;max-width:100%;height:auto}
+
+/* HERO */
+.hero{position:relative;height:560px;overflow:hidden;background:#2a2620}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.78)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,18,14,0.2) 0%,rgba(20,18,14,0.05) 30%,rgba(20,18,14,0.55) 100%)}
+.hero-content{position:absolute;left:0;right:0;bottom:0;padding:48px 32px;color:#fff}
+.hero-inner{max-width:980px;margin:0 auto}
+.hero-kicker{font-family:"Cormorant",serif;font-style:italic;font-size:18px;letter-spacing:0.15em;opacity:0.85;margin-bottom:14px;display:flex;align-items:center;gap:14px}
+.hero-kicker::before{content:"";display:inline-block;width:32px;height:1px;background:rgba(255,255,255,0.6)}
+.hero-title{font-family:"Noto Serif JP",serif;font-size:clamp(36px,5.5vw,60px);font-weight:500;letter-spacing:0.04em;line-height:1.2;margin-bottom:14px}
+.hero-dates{font-family:"Cormorant",serif;font-size:22px;letter-spacing:0.08em;opacity:0.9}
+
+.container{max-width:880px;margin:0 auto;padding:0 32px}
+
+/* SUMMARY */
+.summary-wrap{background:var(--bg);margin-top:-40px;position:relative;z-index:2}
+.summary{background:var(--bg);border:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);margin:0 auto;max-width:820px;box-shadow:0 4px 24px rgba(0,0,0,0.06)}
+.summary-cell{padding:20px 22px;border-right:1px solid var(--line);text-align:left}
+.summary-cell:last-child{border-right:none}
+.summary-label{font-family:"Cormorant",serif;font-style:italic;font-size:13px;color:var(--accent);letter-spacing:0.1em;margin-bottom:6px}
+.summary-value{font-family:"Noto Serif JP",serif;font-weight:500;font-size:20px;color:var(--text);line-height:1.2}
+.summary-sub{font-size:11px;color:var(--text-mute);margin-top:4px;letter-spacing:0.03em}
+
+/* SECTION */
+.section{padding:80px 0 20px}
+.section-head{text-align:center;margin-bottom:56px}
+.section-eyebrow{font-family:"Cormorant",serif;font-style:italic;font-size:16px;color:var(--accent);letter-spacing:0.2em;margin-bottom:10px}
+.section-title{font-family:"Noto Serif JP",serif;font-weight:500;font-size:30px;letter-spacing:0.06em;position:relative;display:inline-block}
+.section-title::after{content:"";display:block;width:40px;height:1px;background:var(--accent);margin:18px auto 0}
+
+/* TIMELINE */
+.day{display:grid;grid-template-columns:110px 1fr;gap:36px;padding:28px 0;border-bottom:1px solid var(--line-soft);align-items:start}
+.day:last-child{border-bottom:none}
+.day-date{text-align:right;border-right:1px solid var(--line);padding-right:24px;padding-top:4px}
+.day-date-num{font-family:"Noto Serif JP",serif;font-weight:500;font-size:28px;color:var(--text);line-height:1;letter-spacing:0.02em}
+.day-date-dow{font-family:"Cormorant",serif;font-style:italic;font-size:14px;color:var(--accent);margin-top:8px}
+.day-body{padding-top:2px}
+.day-body .route{font-family:"Noto Serif JP",serif;font-weight:500;font-size:18px;color:var(--text);margin-bottom:12px;display:flex;align-items:center;flex-wrap:wrap;gap:10px;letter-spacing:0.02em}
+.day-body .route .arrow{color:var(--accent);font-size:14px;font-family:"Cormorant",serif;font-weight:500}
+.day-body .notes{font-size:14px;color:var(--text-soft);line-height:1.95}
+.day-body .notes div{margin-bottom:3px}
+.day-body .notes .lbl{display:inline-block;min-width:64px;font-family:"Cormorant",serif;font-style:italic;color:var(--accent);font-size:13px;letter-spacing:0.05em}
+.day-body .cost{display:inline-block;font-family:"Cormorant",serif;font-size:14px;font-weight:500;color:var(--text-soft);margin-top:14px;padding:5px 14px;border:1px solid var(--line);letter-spacing:0.04em}
+.day.highlight{background:var(--highlight-bg);margin:0 -24px;padding:28px 24px;border-bottom:none;border-radius:2px}
+.day.highlight + .day{border-top:1px solid var(--line-soft)}
+.day.highlight .day-date{border-right-color:var(--accent-soft)}
+.day-tag{display:inline-block;font-family:"Cormorant",serif;font-style:italic;font-size:12px;color:var(--accent);letter-spacing:0.15em;padding:2px 10px;border:1px solid var(--accent-soft);background:var(--bg)}
+
+/* PLACES */
+.places{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.place{border:1px solid var(--line);padding:24px 26px;background:var(--bg);transition:border-color 0.2s ease}
+.place:hover{border-color:var(--accent-soft)}
+.place-num{font-family:"Cormorant",serif;font-style:italic;font-size:13px;color:var(--accent);letter-spacing:0.15em;margin-bottom:10px}
+.place-name{font-family:"Noto Serif JP",serif;font-weight:500;font-size:19px;margin-bottom:16px;letter-spacing:0.03em;padding-bottom:14px;border-bottom:1px solid var(--line-soft)}
+.place-row{display:flex;gap:14px;padding:6px 0;font-size:13.5px;line-height:1.75}
+.place-row .k{font-family:"Cormorant",serif;font-style:italic;color:var(--accent);min-width:64px;flex-shrink:0;font-size:13px;letter-spacing:0.05em;padding-top:2px}
+.place-row .v{color:var(--text-soft);flex:1}
+.place-note{font-size:12px;color:var(--text-soft);margin-top:14px;padding:10px 12px;background:var(--bg-soft);border-left:2px solid var(--accent-soft);line-height:1.75}
+
+/* TRANSPORT */
+.transport-item{padding:24px 0;border-bottom:1px solid var(--line-soft)}
+.transport-item:last-child{border-bottom:none}
+.transport-route{font-family:"Noto Serif JP",serif;font-weight:500;font-size:17px;margin-bottom:8px;letter-spacing:0.03em;display:flex;align-items:baseline;flex-wrap:wrap;gap:10px}
+.transport-route .arrow{color:var(--accent);font-weight:400}
+.transport-route .sub{font-family:"Cormorant",serif;font-style:italic;font-size:14px;color:var(--accent);font-weight:400}
+.transport-detail{font-size:14px;color:var(--text-soft);line-height:1.95}
+.transport-detail .price{color:var(--text);font-weight:500;font-family:"Cormorant",serif;font-size:15px;letter-spacing:0.02em}
+
+/* TODO */
+.todo{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.todo-item{display:flex;align-items:center;gap:14px;padding:18px 20px;border:1px solid var(--line);font-size:14.5px;background:var(--bg);font-family:"Noto Serif JP",serif;letter-spacing:0.02em;transition:background 0.2s ease}
+.todo-item:hover{background:var(--bg-soft)}
+.todo-check{width:16px;height:16px;border:1px solid var(--accent-soft);flex-shrink:0}
+
+/* FOOTER */
+.footer{margin-top:80px;padding:60px 0 80px;background:var(--bg-soft);text-align:center}
+.footer-mark{font-family:"Cormorant",serif;font-style:italic;font-size:22px;color:var(--accent);margin-bottom:16px;letter-spacing:0.1em}
+.footer-divider{width:30px;height:1px;background:var(--accent-soft);margin:0 auto 20px}
+.footer-text{font-size:12px;color:var(--text-mute);line-height:1.9;max-width:520px;margin:0 auto;padding:0 32px}
+
+/* DIVIDER */
+.divider{text-align:center;margin:60px 0 20px;font-family:"Cormorant",serif;color:var(--accent-soft);font-size:20px;letter-spacing:0.8em}
+
+/* RESPONSIVE */
+@media (max-width:720px){
+  .container{padding:0 20px}
+  .hero{height:420px}
+  .hero-content{padding:32px 20px}
+  .summary{grid-template-columns:repeat(2,1fr)}
+  .summary-cell:nth-child(1),.summary-cell:nth-child(2){border-bottom:1px solid var(--line)}
+  .summary-cell:nth-child(2){border-right:none}
+  .summary-cell{padding:16px 18px}
+  .section{padding:56px 0 16px}
+  .section-title{font-size:24px}
+  .day{grid-template-columns:80px 1fr;gap:18px}
+  .day-date{padding-right:14px}
+  .day-date-num{font-size:22px}
+  .day.highlight{margin:0 -16px;padding:24px 16px}
+  .places{grid-template-columns:1fr}
+  .todo{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <img class="hero-img" src="https://images.unsplash.com/photo-1526392060635-9d6019884377?w=1600&q=80" alt="マチュピチュ">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-inner">
+      <div class="hero-kicker">Perú · South America</div>
+      <h1 class="hero-title">ペルー旅行 12日間</h1>
+      <div class="hero-dates">June 9 — 20, 2026</div>
+    </div>
+  </div>
+</section>
+
+<div class="summary-wrap">
+  <div class="summary">
+    <div class="summary-cell">
+      <div class="summary-label">Duration</div>
+      <div class="summary-value">12日間</div>
+      <div class="summary-sub">6月9日〜20日</div>
+    </div>
+    <div class="summary-cell">
+      <div class="summary-label">Cities</div>
+      <div class="summary-value">5都市</div>
+      <div class="summary-sub">リマ・クスコ ほか</div>
+    </div>
+    <div class="summary-cell">
+      <div class="summary-label">Flight</div>
+      <div class="summary-value">¥256,320</div>
+      <div class="summary-sub">往復航空券</div>
+    </div>
+    <div class="summary-cell">
+      <div class="summary-label">Currency</div>
+      <div class="summary-value">PEN / USD</div>
+      <div class="summary-sub">ペルーソル・米ドル</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <section class="section">
+    <div class="section-head">
+      <div class="section-eyebrow">Itinerary</div>
+      <h2 class="section-title">観光日程</h2>
+    </div>
+
+    <div class="day">
+      <div class="day-date"><div class="day-date-num">6/9</div><div class="day-date-dow">Tue</div></div>
+      <div class="day-body">
+        <div class="route">東京 <span class="arrow">→</span> 機内</div>
+        <div class="notes"><div><span class="lbl">移動</span>東京発、機中泊</div></div>
+        <div class="cost">¥133,100</div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-date"><div class="day-date-num">6/10</div><div class="day-date-dow">Wed</div></div>
+      <div class="day-body">
+        <div class="route">リマ着</div>
+        <div class="notes">
+          <div><span class="lbl">時刻</span>21:40 リマ空港着</div>
+          <div><span class="lbl">宿泊</span>リマで休息</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-date"><div class="day-date-num">6/11</div><div class="day-date-dow">Thu</div></div>
+      <div class="day-body">
+        <div class="route">リマ <span class="arrow">→</span> クスコ</div>
+        <div class="notes">
+          <div><span class="lbl">フライト</span>リマ 15:45 → クスコ 17:15</div>
+          <div><span class="lbl">航空券</span>¥7,780 + 受託荷物 ¥6,500</div>
+          <div><span class="lbl">宿泊</span>クスコ Airbnb(中心部・テラス付き)</div>
+          <div><span class="lbl">時間</span>チェックイン 12:00以降 / チェックアウト 9:00前</div>
+        </div>
+        <div class="cost">移動 ¥14,280 + 宿 ¥3,979 / 2人</div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-date"><div class="day-date-num">6/12</div><div class="day-date-dow">Fri</div></div>
+      <div class="day-body">
+        <div class="route">クスコ <span class="arrow">→</span> マチュピチュ村</div>
+        <div class="notes">
+          <div><span class="lbl">移動1</span>コレクティーボ(乗合バス)で約2時間 約¥400 → オリャンタイタンボ駅</div>
+          <div><span class="lbl">移動2</span>列車 11:52発 → マチュピチュ村 13:34着 / $62</div>
+          <div><span class="lbl">宿泊</span>マチュピチュ村 Airbnb</div>
+        </div>
+        <div class="cost">移動 $62 + バス代 + 宿 ¥11,156 / 2人</div>
+      </div>
+    </div>
+
+    <div class="day highlight">
+      <div class="day-date"><div class="day-date-num">6/13</div><div class="day-date-dow">Sat</div></div>
+      <div class="day-body">
+        <div class="route">マチュピチュ観光 <span class="day-tag">Highlight</span></div>
+        <div class="notes">
+          <div><span class="lbl">入場</span>マチュピチュ + ワイナピチュ $59</div>
+          <div><span class="lbl">移動</span>マチュピチュ → クスコ $62</div>
+          <div><span class="lbl">宿泊</span>クスコ Airbnb(広々ダブルルーム/一軒家)</div>
+        </div>
+        <div class="cost">$59 + $62 + 宿 ¥4,807</div>
+      </div>
+    </div>
+
+    <div class="day highlight">
+      <div class="day-date"><div class="day-date-num">6/14</div><div class="day-date-dow">Sun</div></div>
+      <div class="day-body">
+        <div class="route">レインボーマウンテン <span class="day-tag">Highlight</span></div>
+        <div class="notes">
+          <div><span class="lbl">時刻</span>朝2時起き / ツアー開始 3:45</div>
+          <div><span class="lbl">ツアー</span>¥3,000前後(別途 ¥5,000〜8,000帯の選択肢もあり)</div>
+          <div><span class="lbl">宿泊</span>同 クスコ Airbnb</div>
+        </div>
+        <div class="cost">ツアー ¥3,000前後 + 宿 ¥4,807</div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-date"><div class="day-date-num">6/15</div><div class="day-date-dow">Mon</div></div>
+      <div class="day-body">
+        <div class="route">クスコ <span class="arrow">→</span> リマ</div>
+        <div class="notes">
+          <div><span class="lbl">日中</span>クスコ観光</div>
+          <div><span class="lbl">フライト</span>クスコ 20:35 → リマ 22:15</div>
+          <div><span class="lbl">航空券</span>¥5,368 + 手荷物 ¥7,500</div>
+          <div><span class="lbl">宿泊</span>リマ空港泊</div>
+        </div>
+        <div class="cost">¥12,868</div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-date"><div class="day-date-num">6/16</div><div class="day-date-dow">Tue</div></div>
+      <div class="day-body">
+        <div class="route">リマ <span class="arrow">→</span> ナスカ</div>
+        <div class="notes">
+          <div><span class="lbl">移動</span>リマ 8:00発 → ナスカ 15:00着 / 約¥3,000</div>
+          <div><span class="lbl">宿泊</span>ナスカ Airbnb / ¥5,242</div>
+        </div>
+        <div class="cost">¥3,000 + 宿 ¥5,242</div>
+      </div>
+    </div>
+
+    <div class="day highlight">
+      <div class="day-date"><div class="day-date-num">6/17</div><div class="day-date-dow">Wed</div></div>
+      <div class="day-body">
+        <div class="route">ナスカの地上絵 <span class="arrow">→</span> リマ <span class="day-tag">Highlight</span></div>
+        <div class="notes">
+          <div><span class="lbl">セスナ</span>遊覧 約¥20,000</div>
+          <div><span class="lbl">移動</span>ナスカ 17:45 → リマ 22:00 / ¥3,000</div>
+          <div><span class="lbl">宿泊</span>リマ空港泊</div>
+        </div>
+        <div class="cost">セスナ ¥20,000 + 移動 ¥3,000</div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-date"><div class="day-date-num">6/18</div><div class="day-date-dow">Thu</div></div>
+      <div class="day-body">
+        <div class="route">リマ発</div>
+        <div class="notes"><div><span class="lbl">時刻</span>6:04 リマ発</div></div>
+        <div class="cost">¥123,220</div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-date"><div class="day-date-num">6/19</div><div class="day-date-dow">Fri</div></div>
+      <div class="day-body"><div class="route">機内</div></div>
+    </div>
+
+    <div class="day">
+      <div class="day-date"><div class="day-date-num">6/20</div><div class="day-date-dow">Sat</div></div>
+      <div class="day-body">
+        <div class="route">成田着</div>
+        <div class="notes"><div><span class="lbl">時刻</span>16:20 成田到着</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="section-eyebrow">Places to Visit</div>
+      <h2 class="section-title">観光スポット</h2>
+    </div>
+
+    <div class="places">
+
+      <div class="place">
+        <div class="place-num">01</div>
+        <div class="place-name">マチュピチュ</div>
+        <div class="place-row"><div class="k">料金</div><div class="v">大人 59 USドル(約 ¥8,686)</div></div>
+        <div class="place-row"><div class="k">営業</div><div class="v">6:00〜15:00(最終入場)</div></div>
+        <div class="place-row"><div class="k">アクセス</div><div class="v">クスコから電車で約3時間、マチュピチュ村からシャトルバスで約30分(US$24 往復)</div></div>
+        <div class="place-note">※ 現地で国際学生証 + 日本の英語版学生証を提示すると半額になるとの情報あり(要確認)</div>
+      </div>
+
+      <div class="place">
+        <div class="place-num">02</div>
+        <div class="place-name">マチュピチュ温泉</div>
+        <div class="place-row"><div class="k">料金</div><div class="v">約 ¥750</div></div>
+        <div class="place-row"><div class="k">営業</div><div class="v">5:00〜20:00</div></div>
+        <div class="place-row"><div class="k">アクセス</div><div class="v">マチュピチュ村の中心から徒歩約15分</div></div>
+      </div>
+
+      <div class="place">
+        <div class="place-num">03</div>
+        <div class="place-name">アルマス広場(クスコ)</div>
+        <div class="place-row"><div class="k">料金</div><div class="v">無料</div></div>
+        <div class="place-row"><div class="k">アクセス</div><div class="v">空港から車・バスで約20分</div></div>
+      </div>
+
+      <div class="place">
+        <div class="place-num">04</div>
+        <div class="place-name">レインボーマウンテン</div>
+        <div class="place-row"><div class="k">料金</div><div class="v">ツアー必須(複数社の比較推奨)</div></div>
+        <div class="place-row"><div class="k">アクセス</div><div class="v">クスコから車で約3時間</div></div>
+      </div>
+
+      <div class="place">
+        <div class="place-num">05</div>
+        <div class="place-name">ナスカの地上絵</div>
+        <div class="place-row"><div class="k">営業</div><div class="v">8:00〜17:00(展望台)</div></div>
+        <div class="place-row"><div class="k">アクセス</div><div class="v">リマからバスで約6〜7時間(¥4,400)、ナスカからセスナツアーに参加</div></div>
+      </div>
+
+      <div class="place">
+        <div class="place-num">06</div>
+        <div class="place-name">ワカチナ砂漠</div>
+        <div class="place-row"><div class="k">料金</div><div class="v">無料(アクティビティ次第・一人 ¥1,600〜のプランあり)</div></div>
+        <div class="place-row"><div class="k">アクセス</div><div class="v">リマからバスで約5時間(約 ¥3,000)、イカからバス・車で約10分(約 ¥500)</div></div>
+      </div>
+
+      <div class="place">
+        <div class="place-num">07</div>
+        <div class="place-name">ワカプクヤーナ</div>
+        <div class="place-row"><div class="k">料金</div><div class="v">日中 15ペルーソル(約 ¥628) / 夜間 17ペルーソル(約 ¥712)</div></div>
+        <div class="place-row"><div class="k">営業</div><div class="v">9:00〜17:00、18:30〜21:00</div></div>
+        <div class="place-row"><div class="k">アクセス</div><div class="v">ホルヘ・チャベス国際空港から車で約1時間30分</div></div>
+      </div>
+
+      <div class="place">
+        <div class="place-num">08</div>
+        <div class="place-name">チチカカ湖</div>
+        <div class="place-row"><div class="k">料金</div><div class="v">ツアーによって異なる</div></div>
+        <div class="place-row"><div class="k">営業</div><div class="v">ツアーによって異なる</div></div>
+        <div class="place-row"><div class="k">アクセス</div><div class="v">プーノから船で移動</div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="section-eyebrow">Getting Around</div>
+      <h2 class="section-title">その他の交通</h2>
+    </div>
+
+    <div class="transport-item">
+      <div class="transport-route">リマ ⇄ クスコ</div>
+      <div class="transport-detail">航空運賃 <span class="price">¥15,000〜20,000</span></div>
+    </div>
+
+    <div class="transport-item">
+      <div class="transport-route">クスコ → マチュピチュ村 <span class="sub">標準ルート</span></div>
+      <div class="transport-detail">
+        クスコ市内 → ポロイ駅(タクシーで約30分 <span class="price">¥1,000</span>)→ ポロイ駅からマチュピチュ村まで約3時間。<br>
+        ペルーレイルでマチュピチュへ。片道 <span class="price">約 ¥8,900</span> が最安値プラン。
+      </div>
+    </div>
+
+    <div class="transport-item">
+      <div class="transport-route">クスコ → オリャンタイタンボ → マチュピチュ <span class="sub">高山病対策ルート</span></div>
+      <div class="transport-detail">
+        クスコから車で1時間半 <span class="price">¥3,000</span> でオリャンタイタンボへ、そこから列車で約1時間半。<br>
+        ペルーレイル または インカレイル。インカレイルは <span class="price">¥6,000〜10,000</span>、食事付きファーストクラスは <span class="price">¥13,000</span>程度。
+      </div>
+    </div>
+
+    <div class="transport-item">
+      <div class="transport-route">マチュピチュ村 ⇄ 遺跡</div>
+      <div class="transport-detail">バスで30分。帰りは下り坂のため歩いて下りることもできる。</div>
+    </div>
+
+  </section>
+
+  <div class="divider">· · ·</div>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="section-eyebrow">Before Departure</div>
+      <h2 class="section-title">やること</h2>
+    </div>
+
+    <div class="todo">
+      <div class="todo-item"><div class="todo-check"></div>eSIM 購入</div>
+      <div class="todo-item"><div class="todo-check"></div>ビザ・乗り継ぎ確認</div>
+      <div class="todo-item"><div class="todo-check"></div>タオル必要か確認</div>
+      <div class="todo-item"><div class="todo-check"></div>持ち物リスト</div>
+      <div class="todo-item"><div class="todo-check"></div>観光確認</div>
+      <div class="todo-item"><div class="todo-check"></div>換金</div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-mark">Perú</div>
+  <div class="footer-divider"></div>
+  <div class="footer-text">
+    ※ 金額・スケジュールは元メモ記載時点のもの。<br>
+    航空券は「比較中・変動あり」とのメモ書きあり。出発前に各公式サイトで再確認を推奨。
+  </div>
+</footer>
+
+</body>
+</html>
